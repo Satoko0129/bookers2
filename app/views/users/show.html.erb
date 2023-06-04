@@ -1,2 +1,35 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<!DOCTYPE html>
+<html lang="ja">
+<html>
+<head>
+  <title>Bookers2Ver2</title>
+</head>
+<body>
+<header>
+  <p>Welcome! You have signed up successfully.</p>
+</header>
+
+<body>
+
+<div>
+  <h3><%= @user.name %></h3>
+  <%= image_tag @user.get_profile_image(100,100) %>
+  <% if @user == current_user %>
+    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
+  <% end %>
+</div>
+
+<%= render 'books/list', books: @books %>
+
+<% @books.each do |book| %>
+<div>
+  <%= image_tag book.get_image %>
+  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
+  <p>Title：<%= book.title %></p>
+  <p>説明：<%= booke.opinion %></p>
+  <p>ユーザーネーム：<%= book.user.name %></p>
+</div>
+<% end %>
+
+</body>
+</html>
