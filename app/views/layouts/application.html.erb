@@ -5,26 +5,52 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/0d2b76896b.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <header>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "新規登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
-  </header>
-    <%= yield %>
-  </body>
+  <body class="d-flex flex-column vh-100">
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+          <a class="navbar-brand p-3" href="/">
+            <span>Bookers</span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <%= link_to, user_path(current_user.id), class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-house-chimney"></i>
+                    Home
+              </li>
+              
+              <li class="nav-item">
+                <%= link_to, _path, class: 'nav-link text-light' do %>
+                  <i class="fa-solid fa-users-line"></i>
+                    Users
+              </li>
+       
+              <li class="nav-item">
+                <%= link_to 'Books', books_path, class: 'nav-link text-light' %>
+              </li>
+       
+              <li class="nav-item">
+                <%= link_to "Log-out", destroy_user_session_path, method: :delete, class: 'nav-link text-light' %>
+              </li>
+  
+            <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+  </body>     
 </html>
