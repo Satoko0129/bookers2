@@ -1,25 +1,21 @@
-
-
-<body>
-
-<div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_profile_image(100,100) %>
-  <% if @user == current_user %>
-    <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
-
-<%= render 'books/list', books: @books %>
-
-<% @books.each do |book| %>
-<div>
-  <%= image_tag book.get_image %>
-  <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-  <p>Title：<%= book.title %></p>
-  <p>説明：<%= booke.opinion %></p>
-  <p>ユーザーネーム：<%= book.user.name %></p>
-</div>
-<% end %>
-
-</body>
+<main>
+  <p id="notice">Welcome! You have signed up successfully.</p>
+  
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <h2>User info</h2>
+        
+        
+        
+        <table class="table">
+          <tbody>
+            <tr></tr>
+            <tr>name</tr>
+            <tr>introduction</tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>
