@@ -4,16 +4,17 @@
   <div class="container px-5 px-sm-0">
     <div class="row">
       <div class="col-md-3">
-        <h2>User info</h2>
+          <h2>User info</h2>
+          <div class="profile_image">
+              <%= image_tag @book.user.get_profile_image(100,100) %></p>
+          </div>
         
-        
-        
-        <table class="table">
-          <tbody>
-            <tr></tr>
-            <tr>name</tr>
-            <tr>introduction</tr>
-          </tbody>
+        <table>
+            <tr>
+              <th>name</th>
+              <th><%= @user.name %></th>
+            </tr>
+           
         </table>
       </div>
     </div>
