@@ -9,9 +9,22 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
-    @books = @user.books.page(params[:page])
+    @books = @user.books
   end
 
   def edit
+    user = User.find(params[:id])
+  unless user.id == current_user.id
+    redirect_to books_path
+  end
+  
+  def update
+  if current_user.update(user_params)
+    redirect_to root_path
+  else
+    render :edit
+  end
+end
+    
   end
 end
