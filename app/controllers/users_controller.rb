@@ -5,26 +5,28 @@ class UsersController < ApplicationController
 
   def index
     @books = Book.all
+    @book = Book.new
+    @user = current_user
+    @users = User.all
   end
 
   def show
-    @user = current_user
+    @book = Book.new
+    @user = User.find(params[:id])
     @books = @user.books
   end
 
   def edit
-    user = User.find(params[:id])
+    @user = User.find(params[:id])
   unless user.id == current_user.id
-    redirect_to books_path
+    render "edit"
+  else
+    redirect_to user_path(current_user)
   end
   
   def update
-  if current_user.update(user_params)
-    redirect_to root_path
-  else
-    render :edit
+    @user = User.find(params[:id])
   end
-end
     
   end
 end

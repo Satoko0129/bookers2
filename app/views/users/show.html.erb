@@ -23,42 +23,64 @@
         </table>
 
         <div class="row">
-          <%= link_to edit_user_password_path, class: 'btn btn-outline-secondary btn-block' do %>
+          <%= link_to edit_user_path, class: 'btn btn-outline-secondary btn-block' do %>
             <i class="fa-solid fa-user-gear"></i>
           <% end %>
         </div>
 
         <h2 class="mt-3">New book</h2>
-        <form action="/books" accept-charset="UTF-8" method="post">
+        <%= form_with model: @book do |f| %>
+          <label for="book_title">Title</label>
+            <%= f.text_field :title %>
+          <label for="opinion">Opinion</label>
+            <%= f.text_area :opinion %>
+            <%= f.submit 'Create Book', class:"btn btn-success" %>
+        <% end %>
 
-          <div class="form-group">
-            <label for="book_title">Title</label>
-            <input class="form-control book_title" type="text" name="book[title]" id="book_title">
-          </div>
 
-          <div class="form-group">
-            <label for="book_opinion">Opinion</label>
-            <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
-          </div>
-
-          <div class="form-group">
-            <input type="submit" name="commit" value="Create Book" class="btn btn-success" date-disable-with="Create Book">
-          </div>
-        </form>
       </div>
 
       <div class="col-md-8 offset-md-1">
-        <h2>Books</h2>
-        <table class="table table-hover table-inverse">
+        <h2>Book detail</h2>
+        <table class="table">
           <thead>
+            <tbody>
+              <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Opinion</th>
+                <th colspan="3"></th>
+              </tr>
+          </thead>    
+          <tbody>
+            <% @books.each do |book| %>
             <tr>
-              <th></th>
-              <th>Title</th>
-              <th>Opinion</th>
-              <th colspan="3"></th>
+              <td>
+                <%= link_to user_path(@user) do %>
+                  <%= image_tag book.user.get_profile_image(100,100) %>
+                <% end %>
+ 
+               <p><%= book.user.name %></p>
+              </td>
+
+              <td>
+                <p><%= book.title %></p>
+              </td>
+
+              <td>
+                <p><%= book.opinion %></p>
+              </td>
+
+              <td>
+                <%= link_to "Edit", edit_book_path, class: 'btn btn-sm btn-success' %>
+              </td>
+                 
+              <td>
+                <%= link_to "Destroy", books_path, class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+              </td>
             </tr>
-          </thead>
-          <tbody> </tbody>
+            <% end %>
+          </tbody>
         </table>
       </div>
     </div>
