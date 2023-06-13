@@ -1,3 +1,28 @@
-<!DOCTYPE html>
-<html lang="ja">
-</html>
+<%= flash[:notice] %>
+
+<div class="col-md-8 offset-md-1">
+  <h2>Book detail</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          <%= image_tag @user.get_profile_image(100,100) %>
+          <%= link_to user_path(@user) do %>
+          <%= @user.name %>
+          <% end %>
+        </th>
+        <th>
+          <%= link_to book_path(@book.id) do %>
+          <%= @book.title %>
+          <% end %>
+        </th>
+        <th>
+          <%= @book.body %>
+        </th>
+        <th><%= link_to "Edit", edit_book_path(@book) class: 'btn btn-sm btn-success'%></th>
+        <th><%= link_to "Destroy", book_path(@book), method: :delete, date: {confirm: "are you sure?"} %></th>
+        <th></th>
+      </tr>
+    </thead>
+  </table>
+</div>
