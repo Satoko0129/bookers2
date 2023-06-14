@@ -2,11 +2,11 @@
   <%= flash[:notice] %>
   <div class="container">
     <div class="row">
-      
-      <%= render partial: 'users/list', locals: { user: @user } %>
-  
-      <%= render partial: 'books/list', locals: { book: @book } %>
-      
+
+      <%= render 'users/list', user: @user %>
+
+      <%= render 'books/list', book: @newbook %>
+
         <div class="col-md-8 offset-md-1">
           <h2>Book detail</h2>
          <table class="table">
@@ -14,11 +14,11 @@
             <tr>
               <th></th>
               <th>Title</th>
-              <th>Opinion</th>
+              <th>Body</th>
             </tr>
           </thead>
           <tbody>
-            <% @user.book.each do |book| %>
+            <% @user.books.each do |book| %>
             <tr>
               <td>
                 <%= link_to user_path(book.user.id) do %>
@@ -35,11 +35,11 @@
               <td><%= book.body %></td>
 
               <td>
-                <%= link_to "Edit", edit_book_path, class: 'btn btn-sm btn-success' %>
+                <%= link_to "Edit", edit_book_path(book.id), class: 'btn btn-sm btn-success' %>
               </td>
 
               <td>
-                <%= link_to "Destroy", books_path, class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                <%= link_to "Destroy", books_path(book.id), class: "btn btn-sm btn-danger", method: :delete, "data-confirm" => "本当に削除しますか？" %>
               </td>
             </tr>
             <% end %>

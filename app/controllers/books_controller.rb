@@ -1,6 +1,5 @@
 class BooksController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user,{only: [:edit,:update,:destroy]}
 
   def new
     @books = Books.new
@@ -28,9 +27,8 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
     @books = Book.all
-    @book = Book.new
-    @user = @book.user
-    @user = User.find(@book.user.id)
+    @newbook = Book.new
+    @user = User.find(@book.user_id)
     @book_comment = BookComment.new
   end
 
@@ -61,7 +59,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :opinion, :user_id)
+    params.require(:book).permit(:title, :body, :user_id)
   end
 
   def user_params
