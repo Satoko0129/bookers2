@@ -1,20 +1,20 @@
 <main>
+<div class="container px-5 px-sm-0">
   <%= flash[:notice] %>
   <div class="container">
     <div class="row">
-
-      <%= render 'users/list', user: @user %>
-
-      <%= render 'books/list', book: @newbook %>
-
+      <div class="col-md-3">
+        <%= render 'users/list', user: @user %>
+        <%= render 'books/list', book: @newbook %>
+      </div>
         <div class="col-md-8 offset-md-1">
-          <h2>Book detail</h2>
+          <h2>Books</h2>
          <table class="table">
           <thead>
             <tr>
               <th></th>
               <th>Title</th>
-              <th>Body</th>
+              <th>Opinion</th>
             </tr>
           </thead>
           <tbody>
@@ -48,4 +48,5 @@
       </div>
     </div>
   </div>
+</div>
 </main>

@@ -30,11 +30,11 @@
 
         <h2 class="mt-3">New book</h2>
 
-        <% if @book.errors.any? %>
+        <% if @newbook.errors.any? %>
           <ul class="alert alert-danger" role="alert">
             <h3 class="alert-heading">
-              <%= @book.errors.count %>errors prohibited this book from being saved:
-            <% @book.errors.full_messages.each do |message| %>
+              <%= @newbook.errors.count %>errors prohibited this book from being saved:
+            <% @newbook.errors.full_messages.each do |message| %>
               <li><%= message %></li>
             <% end %>
           </ul>
@@ -43,7 +43,7 @@
         <%= form_with model: @book, local: true do |f| %>
           <label for="book_title" class: "form-control">Title</label>
             <%= f.text_field :title %>
-          <label for="book_body" class: "form-control">Body</label>
+          <label for="book_body" class: "form-control">Opinion</label>
             <%= f.text_area :body %>
             <%= f.submit 'Create Book', class:"btn btn-success" %>
         <% end %>
@@ -83,7 +83,7 @@
               </td>
 
               <td>
-                <%= link_to "Edit", edit_book_path, class: 'btn btn-sm btn-success' %>
+                <%= link_to "Edit", edit_book_path(book.id), class: 'btn btn-sm btn-success' %>
               </td>
 
               <td>
