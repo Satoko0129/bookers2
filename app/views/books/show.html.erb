@@ -1,20 +1,21 @@
+<main>
 <%= flash[:notice] %>
-
 <div class="container">
   <div class="row">
     <div class="col-md-3">
-      <%= render 'users/list', user: @user %>
-      <%= render 'books/list', book: @newbook %>
+  <%= render 'users/list', user: @user %>
+  <%= render 'books/list', book: @newbook %>
     </div>
-    <div class="col-md-7 offset-md-1">
-        <h2>Book detail</h2>
+<div class="col-md-7 offset-md-1">
+  <h2>Book detail</h2>
+  <% @book %>
         <table>
           <tbody>
             <tr>
               <td>
                 <%= image_tag @user.get_profile_image(100,100) %>
                 <%= link_to user_path(@user) do %>
-                <%= @user.name %>
+                <div><%= @user.name %></div>
                 <% end %>
               </td>
               <td>
@@ -25,11 +26,20 @@
               <td>
                 <%= @book.body %>
               </td>
-              <td><%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
-              <td><%= link_to "Destroy", book_path(@book), class: "btn btn-sm btn-danger",　method: :delete, date: {confirm: "are you sure?"} %></td>
+              <td>
+                <% if @book.user == current_user %>
+                <%= link_to "Edit", edit_book_path(@book), class: "btn btn-sm btn-success" %>
+                <% end %>
+              </td>
+              <td>
+                <% if @book.user == current_user %>
+                <%= link_to "Destroy", book_path(@book), class: "btn btn-sm btn-danger",　method: :delete, date: {confirm: "are you sure?"} %>
+                <% end %>
+                </td>
             </tr>
           </tbody>
         </table>
+      </div>
     </div>
-</div>
-</div>
+  </div>
+</main>

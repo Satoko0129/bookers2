@@ -57,3 +57,4 @@ gem 'net-smtp'
 gem 'devise'
 gem 'font-awesome-sass'
 gem "active_storage_validations"
+gem "refile", require: "refile/rails", github: 'manfe/refile'
